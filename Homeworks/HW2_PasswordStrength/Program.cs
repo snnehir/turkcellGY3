@@ -8,7 +8,7 @@
  *  char(.)
  */
 
-Console.Write("> Enter your password (enter 'q' to quit): ");
+Console.Write("> Enter a password (enter 'q' to quit): ");
 string password = Console.ReadLine();
 bool isTerminated = false;
 while (!isTerminated)
@@ -29,13 +29,13 @@ while (!isTerminated)
     {
         Console.WriteLine("Password must be at least 6 characters!");
     }
-    Console.Write("\n> Enter your password (enter 'q' to quit): ");
+    Console.Write("\n> Enter a password (enter 'q' to quit): ");
     password = Console.ReadLine();
 }
 
 // Determines the strength of a password. 
-// If the password contains only number, letters or symbols it returns "Weak."
-// If the password contains number, letters and symbols it return "Very strong". Else, it return "Strong". 
+// If the password contains only numbers, letters or symbols it returns "Weak."
+// If the password contains number, letters and symbols it returns "Very strong". Else, it returns "Strong". 
 string GetPasswordStrength(string password)
 {
     int letterCount = password.Count(char.IsLetter);
