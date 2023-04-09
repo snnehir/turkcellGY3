@@ -27,7 +27,6 @@ public class StudentService : IStudentService
             Console.WriteLine("Student removed.");
         }
     }
-    // sınfı değişirseeeee
     public void Update(Student entity)
     {
         Student? student = GetById(entity.Id);
