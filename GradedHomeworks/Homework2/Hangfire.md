@@ -110,8 +110,8 @@ int jobDelayInSeconds = (int)timeDifference.TotalSeconds;
 var jobId = BackgroundJob.Schedule(() => SendMail(model.Message, model.To), TimeSpan.FromSeconds(jobDelayInSeconds));
 ```
 
-![scheduled-jobs-1](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/delayed-scheduled-jobs.png)
+![scheduled-jobs-1](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/delayed-scheduled-jobs.png)
 
 Kullanýcý `Send` butonuna bastýðýnda görev oluþur:
 
-![scheduled-jobs-1](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/delayed-scheduled-jobs-2.png)
+![scheduled-jobs-1](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/delayed-scheduled-jobs-2.png)
