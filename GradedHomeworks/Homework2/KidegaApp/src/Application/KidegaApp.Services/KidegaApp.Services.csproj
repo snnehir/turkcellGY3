@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\KidegaApp.Entities\KidegaApp.Entities.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\KidegaApp.Infrastructure.Repositories\KidegaApp.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\KidegaApp.DataTransferObjects\KidegaApp.DataTransferObjects.csproj" />
+  </ItemGroup>
+
+</Project>
