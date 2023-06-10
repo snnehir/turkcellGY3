@@ -1,10 +1,10 @@
 ## Hangfire Nedir?
 Hangfire, NET ve .NET Core uygulamalarýnda arka planda iþlem (background task) yapmanýn  kolay bir yoludur.
 Hangfire kullanabilmek için gerekli Nuget paketini indirmek ve bir RDBMS ya da NoSQL kullanmak yeterlidir. 
-![hangfire-packages](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/hangfire-packages.png)
+![hangfire-packages](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/hangfire-packages.png)
 
 Hangfire; türler, yöntem adlarý, argümanlar vb. gibi tüm ayrýntýlarý veri tabanýnda tutar. Bu yüzden veri tabaný baðlantýsýna ihtiyacýmýz vardýr.
-![hangfire-db](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/hangfire-db.png)
+![hangfire-db](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/hangfire-db.png)
 
 Hangfire ve Hangfire Dashboard'u kullanabilmemiz için Program.cs'te yapýlmasý gereken konfigürasyonlar þu þekildedir:
 ```c#
@@ -58,7 +58,7 @@ Bu tür job, görevi bir kez çalýþtýrýr ve sonucunu takip etmez. Sadece görevi baþ
 
 **Örnek:** Sipariþ onaylandýktan sonra e-fatura üretmek istediðimiz varsayalým. 
 
-![fire-and-forget-jobs--1](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/continuation-jobs-1.png)
+![fire-and-forget-jobs--1](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/continuation-jobs-1.png)
 
 Bu job'ý üretmek için `Enqueue` metodu kullanýlýr:
 ```cs
@@ -67,7 +67,7 @@ var jobId = BackgroundJob.Enqueue(() => CreateInvoice());
 
 `Confirm` butonuna basýldýðýnda job oluþturulur:
 
-![fire-and-forget-jobs-2](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/continuation-jobs-2.png)
+![fire-and-forget-jobs-2](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/continuation-jobs-2.png)
 
 ### 2. Continuation / Dependent Jobs  (Devam Eden Görevler)
 Bu özellik, bir görevin tamamlanmasýndan sonra otomatik olarak baþka bir görevin baþlatýlmasýný saðlar. 
@@ -80,7 +80,7 @@ var jobId = BackgroundJob.Enqueue(() => CreateInvoice());
 BackgroundJob.ContinueJobWith(jobId, () => SendOrderInvoiceMail());
 ```
 
-![continuation-jobs](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/continuation-jobs-3.png)
+![continuation-jobs](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/continuation-jobs-3.png)
 
 ### 3. Recurring Jobs  (Tekrarlanan Görevler)
 Belirli aralýklarla tekrarlanan bir görevi oluþturmak için bu tür job kullanýlýr. Zamanlama formatý `Cron` ifadesiyle belirtilir.
@@ -92,11 +92,11 @@ Bu tür job'ý aþaðýdaki gibi üretebiliriz:
 RecurringJob.AddOrUpdate(() => SendPromotionMail(), recurrencePattern);
 ```
 
-![recurring-jobs-2](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/recurring-job-1.png)
+![recurring-jobs-2](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/recurring-job-1.png)
 
 Kullanýcý `Subscribe` butonuna bastýðýnda tekrarlanan görev oluþur:
 
-![recurring-jobs-2](https://github.com/snnehir/turkcellGY3/blob/master/GradedHomeworks/Homework2/images/hangfire/recurring-job-2.png)
+![recurring-jobs-2](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/hangfire/recurring-job-2.png)
 
 ### 4. Delayed / Scheduled Jobs  (Gecikmeli / Planlý Görevler)
 Bu tür job, belirli bir süre sonra görevi çalýþtýrýr. Gecikme süresi `TimeSpan` olarak belirtilir. 
