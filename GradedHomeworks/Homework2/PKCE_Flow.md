@@ -36,7 +36,7 @@ code_challenge, code_verifier'ýn SHA-256 hash algoritmasý kullanýlarak hashlenmi
 
 ### PKCE Mekanizmasýný Destekleyen Kimlik Saðlayýcýlarý:
 
-1. Azure Active Directory(Azure AD)
+1. [Azure Active Directory (Azure AD)](https://learn.microsoft.com/en-us/azure/active-directory-b2c/tutorial-register-spa)
 2. Auth0
 3. Okta
 4. AWS Cognito
