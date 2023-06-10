@@ -107,7 +107,6 @@ namespace Movies.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MovieId", "PlayerId");
