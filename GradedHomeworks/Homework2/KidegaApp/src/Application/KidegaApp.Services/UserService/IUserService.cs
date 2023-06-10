@@ -5,6 +5,7 @@ namespace KidegaApp.Services
 {
     public interface IUserService
     {
-        Task<UserLoginResponse?> ValidateUser(UserLoginRequest request);
+        Task<UserLoginResponse?> ValidateUserLogin(UserLoginRequest request);
+        Task<UserLoginResponse?> ValidateUserSignUp(UserSignUpRequest request);
     }
 }

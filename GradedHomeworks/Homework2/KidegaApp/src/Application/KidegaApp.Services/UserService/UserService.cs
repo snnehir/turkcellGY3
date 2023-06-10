@@ -1,12 +1,4 @@
-﻿using KidegaApp.DataTransferObjects.Requests;
-using KidegaApp.DataTransferObjects.Responses;
-using KidegaApp.Infrastructure.Repositories.UserRepository;
-using KidegaApp.Services.Helpers;
-using Mapster;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
-
-namespace KidegaApp.Services.UserService
+﻿namespace KidegaApp.Services.UserService
 {
     public class UserService : IUserService
     {
@@ -15,7 +7,7 @@ namespace KidegaApp.Services.UserService
         {
             this.userRepository = userRepository;
         }
-        public async Task<UserLoginResponse?> ValidateUser(UserLoginRequest request)
+        public async Task<UserLoginResponse?> ValidateUserLogin(UserLoginRequest request)
         {
             // email format check 
             var emailCheck = Helpers.Validation.IsValidEmail(request.Email);
@@ -39,6 +31,42 @@ namespace KidegaApp.Services.UserService
             }
 
             return new UserLoginResponse() { IsSuccess = true, Email = user.Email, Role = user.Role };
+        }
+
+        public async Task<UserLoginResponse?> ValidateUserSignUp(UserSignUpRequest request)
+        {
+            // email format check 
+            bool isValidEmail = Helpers.Validation.IsValidEmail(request.Email);
+            if (!isValidEmail)
+            {
+                return new UserLoginResponse() { IsSuccess = false };
+            }
+            // password format check
+            bool isValidPassword = Helpers.Validation.IsValidPassword(request.Password);
+            if (!isValidPassword)
+            {
+                return new UserLoginResponse() { IsSuccess = false };
+            }
+            // email exist check
+            var existing = await userRepository.GetUserByEmailAsync(request.Email);
+            if (existing is not null)
+            {
+                return new UserLoginResponse() { IsSuccess = false };
+            }
+
+            // hash + salt password
+            var salt = SecurityHelper.GenerateSalt(70);
+            var hashPassword = SecurityHelper.HashPassword(request.Password, salt);
+
+            // save user to db
+            var user = request.Adapt<User>();
+
+            user.PasswordDigest = hashPassword;
+            user.PasswordSalt = salt;
+            user.Role = "Client";
+            
+            await userRepository.CreateAsync(user);
+            return new UserLoginResponse() { IsSuccess = true, Email = request.Email, Role = "Client" };
         }
     }
 }

@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddServices();
 builder.Services.AddSessionService();
 builder.Services.AddDbContextService();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

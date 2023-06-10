@@ -2,6 +2,12 @@
 {
     public static class ServiceColllectionExtensions
     {
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, EFUserRepository>();
+            return services;
+        }
         public static IServiceCollection AddDbContextService(this IServiceCollection services)
         {
             var configuration = services.BuildServiceProvider().GetService<IConfiguration>();

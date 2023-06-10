@@ -9,7 +9,8 @@
         public decimal UnitPrice { get; set; }
         public Author Author { get; set; }
         public int AuthorId { get; set; }
-        public ICollection<BookCategory> BookCategories { get; set; } = new HashSet<BookCategory>();
+        public Category Category { get; set; }
+        public int CategoryId { get; set; }
 
     }
 }

@@ -1,8 +1,4 @@
-﻿using KidegaApp.Mvc.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace KidegaApp.Mvc.Controllers
+﻿namespace KidegaApp.Mvc.Controllers
 {
     public class HomeController : Controller
     {

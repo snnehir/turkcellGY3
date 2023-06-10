@@ -1,10 +1,5 @@
-﻿using KidegaApp.DataTransferObjects.Requests;
-using KidegaApp.Mvc.Models;
-using KidegaApp.Services;
-using Mapster;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+﻿
+using Microsoft.AspNetCore.Authorization;
 
 namespace KidegaApp.Mvc.Controllers
 {
@@ -21,21 +16,31 @@ namespace KidegaApp.Mvc.Controllers
         }
         public IActionResult Login(string? redirectUrl)
         {
-            ViewBag.RedirectUrl = redirectUrl;
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {   
+                if(!string.IsNullOrEmpty(redirectUrl))
+                    return Redirect(redirectUrl);
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            else
+            {
+                ViewBag.RedirectUrl = redirectUrl;
+                return View();
+            }
+            
         }
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginViewModel model, string? redirectUrl)
         {
             if (ModelState.IsValid)
             {
-                var user = await userService.ValidateUser(model.Adapt<UserLoginRequest>());
-                if (user != null)
+                var loginResponse = await userService.ValidateUserLogin(model.Adapt<UserLoginRequest>());
+                if (loginResponse != null && loginResponse.IsSuccess)
                 {
                     Claim[] claims = new Claim[]
                     {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Role, user.Role),
+                        new Claim(ClaimTypes.Email, loginResponse.Email),
+                        new Claim(ClaimTypes.Role, loginResponse.Role),
                     };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
@@ -50,6 +55,49 @@ namespace KidegaApp.Mvc.Controllers
             }
             return View();
         }
+        [AllowAnonymous]
+        public IActionResult SignUp(string? redirectUrl)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (!string.IsNullOrEmpty(redirectUrl))
+                    return Redirect(redirectUrl);
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            else
+            {
+                ViewBag.RedirectUrl = redirectUrl;
+                return View();
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> SignUp(UserSignUpViewModel model, string? redirectUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var signUp = await userService.ValidateUserSignUp(model.Adapt<UserSignUpRequest>());
+                if (signUp != null && signUp.IsSuccess)
+                {
+                    Claim[] claims = new Claim[]
+                    {
+                        new Claim(ClaimTypes.Email, signUp.Email),
+                        new Claim(ClaimTypes.Role, signUp.Role),
+                    };
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    await HttpContext.SignInAsync(principal);
+                    if (!string.IsNullOrEmpty(redirectUrl) && Url.IsLocalUrl(redirectUrl))
+                    {
+                        return Redirect(redirectUrl);
+                    }
+                    return Redirect("/");
+                }
+                ModelState.AddModelError("signup", "Invalid email or password!");
+            }
+            return View();
+        }
+
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
