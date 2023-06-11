@@ -9,6 +9,7 @@ builder.Services.AddSessionService();
 builder.Services.AddDbContextService();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddCookieAuthentication();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
