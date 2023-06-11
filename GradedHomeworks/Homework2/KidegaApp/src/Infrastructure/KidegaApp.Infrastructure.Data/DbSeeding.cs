@@ -17,9 +17,9 @@ namespace KidegaApp.Infrastructure.Data
             {
                 var categories = new List<Category>() 
                 {
-                    new Category(){CategoryName="Classics"},
-                    new Category(){CategoryName="Sci-Fi"},
-                    new Category(){CategoryName="Philosophy"},
+                    new Category(){Name="Classics"},
+                    new Category(){Name="Sci-Fi"},
+                    new Category(){Name="Philosophy"},
 
                 };
                 context.Categories.AddRange(categories);

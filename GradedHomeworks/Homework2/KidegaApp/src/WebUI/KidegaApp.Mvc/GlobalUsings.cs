@@ -12,4 +12,8 @@ global using System.Security.Claims;
 global using System.Diagnostics;
 global using KidegaApp.Services.UserService;
 global using KidegaApp.Infrastructure.Repositories.UserRepository;
-
+global using KidegaApp.DataTransferObjects.Responses;
+global using Microsoft.AspNetCore.Mvc.Rendering;
+global using Microsoft.AspNetCore.Mvc.Routing;
+global using Microsoft.AspNetCore.Mvc.ViewFeatures;
+global using Microsoft.AspNetCore.Razor.TagHelpers;

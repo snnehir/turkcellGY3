@@ -7,4 +7,4 @@ global using KidegaApp.DataTransferObjects.Responses;
 global using KidegaApp.Infrastructure.Repositories.UserRepository;
 global using KidegaApp.Services.Helpers;
 global using Mapster;
-
+global using KidegaApp.Infrastructure.Repositories.BookRepository;

@@ -1,0 +1,13 @@
+﻿@model BookDisplayResponse
+
+
+<div class="card my-2">
+    <img src="@Model.ImageUrl" class="img-fluid center-image" />
+    <div class="card-body">
+        <h4 class="card-title">@Model.Title</h4>
+        <a class="card-text text-decoration-none" asp-action="Index" asp-controller="Author"
+           asp-route-authorId="@Model.AuthorId">@Model.Author</a>
+        <h5 class="card-text text-end">@Model.UnitPrice $</h5>
+        <button class="btn btn-success basket w-100" data-id="@Model.Id">Add To Cart</button>
+    </div>
+</div>

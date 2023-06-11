@@ -47,10 +47,16 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="row">
+                <div class="col-2">@await Component.InvokeAsync("Menu")</div>
+                <div class="col-10">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - KidegaApp.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

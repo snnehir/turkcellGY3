@@ -1,0 +1,39 @@
+﻿@model KidegaApp.DataTransferObjects.Responses.AuthorDisplayResponse
+
+@{
+    ViewData["Title"] = Model.FullName;
+    var columnCount = 0;
+}
+
+
+<div>
+    <h4>@Model.FullName</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Biography)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Biography)
+        </dd>
+        <dt class="col-sm-10">
+            Books
+        </dt>
+        <dd>
+            <div class="row m-4">
+                @foreach (var book in Model.Books)
+                {
+                    @if (columnCount != 0 && columnCount % 4 == 0)
+                    {
+                        @:</div><div class="row m-4">
+                    }      
+                    <div class="col-3">
+                       <partial name="_AuthorBookCard" model="book"/>
+                    </div>
+                      columnCount++;
+                }
+            </div>
+        </dd>
+    </dl>
+</div>
+
