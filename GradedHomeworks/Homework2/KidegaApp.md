@@ -2,43 +2,44 @@
 
 ### Ekranlar
 
-Katmanlı mimari yapısı ile ASP.NET Core kullanarak geliştirdiğim Kidega klon proje ekranları şu şekildedir:
+KatmanlÄ± mimari yapÄ±sÄ± ile ASP.NET Core kullanarak geliÅŸtirdiÄŸim Kidega klon proje ekranlarÄ± ÅŸu ÅŸekildedir:
 
-1. Ana sayfa, kategoriler, yazar sayfası
+1. Ana sayfa, kategoriler, yazar sayfasÄ±
 
 ![index](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/index.gif)
 
 
-2. Sepet işlemleri sayfası
+2. Sepet iÅŸlemleri sayfasÄ±
 
 ![cart](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/cart.gif)
 
 
-3. Yeni üye kaydolma sayfası
+3. Yeni Ã¼ye kaydolma sayfasÄ±
 
 ![cart](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/signup.gif)
 
 
-4. Giriş yapma sayfası
+4. GiriÅŸ yapma sayfasÄ±
 
 ![cart](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/login.gif)
 
 
-### Veri tabanı diagramı
+### Veri tabanÄ± diagramÄ±
 
-![cart](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/db-diagram.png)
-Projede kullanılan veri tabanı diagramına [drawSql](https://drawsql.app/teams/me-438/diagrams/kidega-clone) üzerinden de ulaşabilirsiniz.
+![cart](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/db-diagram.png) 
+
+Projede kullanÄ±lan veri tabanÄ± diagramÄ±na [drawSql](https://drawsql.app/teams/me-438/diagrams/kidega-clone) Ã¼zerinden de ulaÅŸabilirsiniz.
 
 
 ### Mapping
 
-Mapping kütüphanesi olarak diğer alternatiflerden daha performanslı olduğu ve kullanma kolaylığından ötürü [Mapster](https://github.com/MapsterMapper/Mapster) kütüphanesini tercih ettim.
+Mapping kÃ¼tÃ¼phanesi olarak diÄŸer alternatiflerden daha performanslÄ± olduÄŸu ve kullanma kolaylÄ±ÄŸÄ±ndan Ã¶tÃ¼rÃ¼ [Mapster](https://github.com/MapsterMapper/Mapster) kÃ¼tÃ¼phanesini tercih ettim.
 
-Mapster kullanmak için öncelikle gerekli Nuget paketi indirilir.
+Mapster kullanmak iÃ§in Ã¶ncelikle gerekli Nuget paketi indirilir.
 
 ![mapster](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/Homework2/images/kidega-app/mapster.png)
 
-Sonrasında bir extension metodu aracılığıyla dönüşümler eklenebilir:
+SonrasÄ±nda bir extension metodu aracÄ±lÄ±ÄŸÄ±yla dÃ¶nÃ¼ÅŸÃ¼mler eklenebilir:
 
 ```
 public static void MapsterConfigurations(this IServiceCollection services)
@@ -50,20 +51,19 @@ public static void MapsterConfigurations(this IServiceCollection services)
 }
 ```
 
-`Program.cs` dosyasına extension eklenir:
+`Program.cs` dosyasÄ±na extension eklenir:
 
 ``` 
 builder.Services.MapsterConfigurations(); 
 ```
 
 
-Dönüştürme işlemi `Scan` metodu sayesinde projenin her kısmında `Adapt` metodu ile gerçekleştirilir:
+TanÄ±mladÄ±ÄŸÄ±mÄ±z konfigÃ¼rasyona `Scan` metodu sayesinde projenin her kÄ±smÄ±ndan eriÅŸilebilir ve dÃ¶nÃ¼ÅŸtÃ¼me iÅŸlemi `Adapt` metodu ile yapÄ±lÄ±r:
 
- ```
+```
 public async Task<IEnumerable<BookDisplayResponse>> GetBooksByCategoryAsync(int categoryId)
 {
     var books = await _bookRepository.GetBooksByCategoryAsync(categoryId);
     return books.Adapt<IEnumerable<BookDisplayResponse>>();
 }
- 
- ```
+```
