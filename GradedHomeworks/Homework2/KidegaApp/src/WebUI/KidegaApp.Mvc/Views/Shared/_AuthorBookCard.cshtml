@@ -1,12 +1,12 @@
 ﻿@model AuthorBook
 
 
-<div class="card my-2">
-    <img src="@Model.ImageUrl" class="img-fluid center-image" />
-    <div class="card-body">
+<div class="card my-2 align-items-center" style="width: 220px;">
+    <img src="@Model.ImageUrl" class="card-img" />
+    <div class="card-body w-100">
         <h4 class="card-title">@Model.Title</h4>
         <p class="card-title">@Model.CategoryName</p>
-        <h5 class="card-text text-end">@Model.UnitPrice $</h5>
-        <button class="btn btn-success basket w-100" data-id="@Model.Id">Add To Cart</button>
+        <h5 class="card-text text-end mt-1">@Model.UnitPrice $</h5>
+        <button class="btn btn-darkorange basket w-100 text-white mt-1" data-id="@Model.Id">Sepete Ekle</button>
     </div>
 </div>

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace KidegaApp.Mvc.Models
+﻿namespace KidegaApp.Mvc.Models
 {
     public class UserSignUpViewModel
     {

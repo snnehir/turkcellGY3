@@ -19,5 +19,22 @@
             var books = await _bookRepository.GetBooksByCategoryAsync(categoryId);
             return books.Adapt<IEnumerable<BookDisplayResponse>>();
         }
+
+        public async Task<IEnumerable<BookDisplayResponse>> GetAllBooksWithPredicateAsync(Expression<Func<Book, bool>> predicate)
+        {
+            var books = await _bookRepository.GetAllWithPredicateAsync(predicate);
+            if (!books.Any())
+            {
+                return Enumerable.Empty<BookDisplayResponse>();
+            }
+            return books.Adapt<IEnumerable<BookDisplayResponse>>();
+        }
+
+        public async Task<BookBasketResponse> GetBookByIdAsync(int id)
+        {
+            var book = await _bookRepository.GetByIdAsync(id);
+            return book.Adapt<BookBasketResponse>();
+
+        }
     }
 }

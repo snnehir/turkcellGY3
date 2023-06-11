@@ -1,13 +1,4 @@
-﻿using KidegaApp.Entities;
-using KidegaApp.Infrastructure.Repositories.AuthorRepository;
-using KidegaApp.Infrastructure.Repositories.BookRepository;
-using KidegaApp.Infrastructure.Repositories.CategoryRepository;
-using KidegaApp.Services.AuthorService;
-using KidegaApp.Services.BookService;
-using KidegaApp.Services.CategoryService;
-using System.Reflection;
-
-namespace KidegaApp.Mvc.Extensions
+﻿namespace KidegaApp.Mvc.Extensions
 {
     public static class ServiceColllectionExtensions
     {

@@ -1,6 +1,4 @@
-﻿using KidegaApp.Infrastructure.Repositories.AuthorRepository;
-
-namespace KidegaApp.Services.AuthorService
+﻿namespace KidegaApp.Services.AuthorService
 {
     public class AuthorService: IAuthorService
     {

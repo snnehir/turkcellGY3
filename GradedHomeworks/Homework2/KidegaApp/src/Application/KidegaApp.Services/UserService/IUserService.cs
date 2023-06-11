@@ -1,7 +1,4 @@
-﻿using KidegaApp.DataTransferObjects.Requests;
-using KidegaApp.DataTransferObjects.Responses;
-
-namespace KidegaApp.Services
+﻿namespace KidegaApp.Services
 {
     public interface IUserService
     {

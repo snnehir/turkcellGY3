@@ -1,7 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
-
-namespace KidegaApp.Mvc.Controllers
+﻿namespace KidegaApp.Mvc.Controllers
 {
     public class UserController : Controller
     {

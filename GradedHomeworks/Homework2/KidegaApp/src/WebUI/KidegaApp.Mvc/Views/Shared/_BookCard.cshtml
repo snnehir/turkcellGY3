@@ -1,13 +1,16 @@
 ﻿@model BookDisplayResponse
 
 
-<div class="card my-2">
-    <img src="@Model.ImageUrl" class="img-fluid center-image" />
-    <div class="card-body">
-        <h4 class="card-title">@Model.Title</h4>
+<div class="card my-2 align-items-center" style="width: 220px;">
+    <div >
+        <img src="@Model.ImageUrl" class="m-10 card-img" />
+    </div>
+    
+    <div class="card-body w-100">
+        <h4 class="card-title" style="height: 90px;">@Model.Title</h4>
         <a class="card-text text-decoration-none" asp-action="Index" asp-controller="Author"
            asp-route-authorId="@Model.AuthorId">@Model.Author</a>
-        <h5 class="card-text text-end">@Model.UnitPrice $</h5>
-        <button class="btn btn-success basket w-100" data-id="@Model.Id">Add To Cart</button>
+        <h5 class="card-text text-end mt-1">@Model.UnitPrice ₺</h5>
+        <button class="btn btn-darkorange basket w-100 text-white mt-1" data-id="@Model.Id">Sepete Ekle</button>
     </div>
 </div>

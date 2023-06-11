@@ -11,13 +11,13 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Biography)
+            Yazar Hakkında
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Biography)
         </dd>
         <dt class="col-sm-10">
-            Books
+            Eserleri
         </dt>
         <dd>
             <div class="row m-4">
@@ -37,3 +37,25 @@
     </dl>
 </div>
 
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            
+            $('.basket').on('click',function(){
+                let id = $(this).data('id');
+                console.log(id)
+                $.ajax({
+                    url:'/Shopping/AddBook/'+id,
+                    type:'GET',
+                    success:function(data){
+                        console.log(data)
+                        location = location
+                    },
+                    error: function(err){
+                        console.log('error: ',error);
+                    }
+                });
+            });
+        });
+    </script>
+}

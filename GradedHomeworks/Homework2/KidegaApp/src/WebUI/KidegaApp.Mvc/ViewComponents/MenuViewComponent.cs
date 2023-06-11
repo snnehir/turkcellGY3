@@ -1,6 +1,4 @@
-﻿using KidegaApp.Services.CategoryService;
-
-namespace KidegaApp.Mvc.ViewComponents
+﻿namespace KidegaApp.Mvc.ViewComponents
 {
     public class MenuViewComponent: ViewComponent
     {

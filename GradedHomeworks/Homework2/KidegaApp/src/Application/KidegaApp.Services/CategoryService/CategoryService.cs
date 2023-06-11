@@ -1,6 +1,4 @@
-﻿using KidegaApp.Infrastructure.Repositories.CategoryRepository;
-
-namespace KidegaApp.Services.CategoryService
+﻿namespace KidegaApp.Services.CategoryService
 {
     public class CategoryService : ICategoryService
     {

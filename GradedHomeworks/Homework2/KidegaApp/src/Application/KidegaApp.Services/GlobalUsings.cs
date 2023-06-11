@@ -8,3 +8,7 @@ global using KidegaApp.Infrastructure.Repositories.UserRepository;
 global using KidegaApp.Services.Helpers;
 global using Mapster;
 global using KidegaApp.Infrastructure.Repositories.BookRepository;
+global using KidegaApp.Infrastructure.Repositories.AuthorRepository;
+global using System.Linq.Expressions;
+global using KidegaApp.Infrastructure.Repositories.CategoryRepository;
+

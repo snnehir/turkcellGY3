@@ -1,0 +1,109 @@
+﻿@model BookCollection
+@{
+    ViewData["Title"] = "Sepetim";
+}
+<h1>Sepetim</h1>
+@if (Model.BookItems.Count == 0)
+{
+    <div class="alert alert-danger">Sepetinize hiç ürün eklemediniz!</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Başlık</th>
+                <td>Birim Fiyat</td>
+                <td>Adet</td>
+                <td>Ara Toplam</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bookItem in Model.BookItems)
+            {
+                <tr id="cart-item-@bookItem.Book.Id">
+                    <td>@bookItem.Book.Title</td>
+                    <td id="item-@bookItem.Book.Id-price">@bookItem.Book.UnitPrice₺</td>
+                    <td>
+                        <button class="btn btn-danger text-center rounded-circle decrease-btn" data-id="@bookItem.Book.Id" style="width: 37px; height: 37px;"> - </button>
+                        <span class="mx-2">@bookItem.Quantity</span>
+                        <button class="btn btn-success text-center rounded-circle increase-btn" data-id="@bookItem.Book.Id" style="width: 37px; height: 37px;"> + </button>
+                    </td>
+                    <td><span id="item-@bookItem.Book.Id-subtotal">@(bookItem.Quantity * bookItem.Book.UnitPrice)</span>₺</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Toplam Fiyat: <span id="total-price">@Model.TotalPrice()</span>₺</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $(".increase-btn").on("click", function () {
+                let id = $(this).data('id');
+                console.log(id)
+                var spanElement = $(this).siblings("span");
+                var subTotalPriceElement = $(`#item-${id}-subtotal`)
+                var totalPriceElement = $("#total-price")
+                $.ajax({
+                    url: '/Shopping/IncreaseBookQuantity/' + id,
+                    type: 'GET',
+                    success: function (data) {
+                        let quantity = parseInt(spanElement.text()) + 1;
+                        let price = parseFloat($(`#item-${id}-price`).text())
+                        let totalPrice = parseFloat(totalPriceElement.text()) + price
+                        spanElement.text(quantity);
+                        subTotalPriceElement.text(quantity * price)
+                        totalPriceElement.text(totalPrice)
+                        console.log(data)
+                        $('.toast-body').text(data.message);
+                        alertify.success(data.message);
+                        location = location
+                    },
+                    error: function (err) {
+                        console.log('error: ', error);
+                    }
+                })
+            })
+        })
+
+        $(document).ready(function () {
+            $(".decrease-btn").on("click", function () {
+                let id = $(this).data('id');
+                console.log(id)
+                var spanElement = $(this).siblings("span");
+                var subTotalPriceElement = $(`#item-${id}-subtotal`)
+                var totalPriceElement = $("#total-price")
+                $.ajax({
+                    url: '/Shopping/DecreaseBookQuantity/' + id,
+                    type: 'GET',
+                    success: function (data) {
+                        let quantity = parseInt(spanElement.text()) - 1;
+                        let price = parseFloat($(`#item-${id}-price`).text())
+                        let totalPrice = parseFloat(totalPriceElement.text()) - price
+                        totalPriceElement.text(totalPrice)
+                        if (quantity === 0) {
+                            $(`#cart-item-${id}`).remove()
+                        } else {
+                            spanElement.text(quantity);
+                            subTotalPriceElement.text(quantity * price)
+                        }
+                        $('.toast-body').text(data.message);
+                        alertify.warning(data.message);
+                        location = location // refresh page
+                    },
+                    error: function (err) {
+                        console.log('error: ', error);
+                    }
+                })
+            })
+        })
+    </script>
+
+}

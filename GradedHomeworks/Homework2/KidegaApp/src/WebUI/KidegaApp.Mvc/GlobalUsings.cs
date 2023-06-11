@@ -17,3 +17,16 @@ global using Microsoft.AspNetCore.Mvc.Rendering;
 global using Microsoft.AspNetCore.Mvc.Routing;
 global using Microsoft.AspNetCore.Mvc.ViewFeatures;
 global using Microsoft.AspNetCore.Razor.TagHelpers;
+global using KidegaApp.Services.AuthorService;
+global using KidegaApp.Entities;
+global using KidegaApp.Services.BookService;
+global using System.Linq.Expressions;
+global using Microsoft.AspNetCore.Authorization;
+global using KidegaApp.Infrastructure.Repositories.AuthorRepository;
+global using KidegaApp.Infrastructure.Repositories.BookRepository;
+global using KidegaApp.Infrastructure.Repositories.CategoryRepository;
+global using KidegaApp.Services.CategoryService;
+global using System.Reflection;
+global using System.Text.Json;
+global using System.ComponentModel.DataAnnotations;
+

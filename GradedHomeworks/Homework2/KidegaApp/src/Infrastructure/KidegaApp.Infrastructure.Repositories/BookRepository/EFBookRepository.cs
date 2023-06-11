@@ -30,9 +30,13 @@
         }
         
 
-        public Task<IList<Book>> GetAllWithPredicateAsync(Expression<Func<Book, bool>> predicate)
+        public async Task<IList<Book>> GetAllWithPredicateAsync(Expression<Func<Book, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Books.AsNoTracking()
+                                         .Where(predicate)
+                                         .Include(b => b.Author)
+                                         .Include(b => b.Category)
+                                         .ToListAsync();
         }
 
         public async Task<IEnumerable<Book>> GetBooksByCategoryAsync(int categoryId)

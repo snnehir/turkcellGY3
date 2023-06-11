@@ -1,7 +1,4 @@
-﻿using KidegaApp.Services.AuthorService;
-using Microsoft.AspNetCore.Mvc;
-
-namespace KidegaApp.Mvc.Controllers
+﻿namespace KidegaApp.Mvc.Controllers
 {
     public class AuthorController : Controller
     {

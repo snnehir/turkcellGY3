@@ -20,3 +20,36 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn-darkorange, .active.btn-darkorange  {
+    background-color: darkorange;
+    border-color: darkorange;
+}
+
+.card-img {
+    width: 200px;
+    height: 307px;
+}
+.page-item > a{
+    color: black;
+}
+
+.page-item.active > a {
+    background-color: darkorange !important;
+    border-color: darkorange;
+}
+
+.darkorange {
+    color: darkorange !important;
+}
+.tomato-bg {
+    background-color: tomato !important;
+}
+.nav-basket > a {
+    border: 1px solid darkorange;
+    border-radius: 4px;
+    color: darkorange;
+}
+.nav-basket > a > i{
+    color: darkorange;
+}

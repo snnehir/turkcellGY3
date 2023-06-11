@@ -7,40 +7,59 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KidegaApp.Mvc.styles.css" asp-append-version="true" />
+    <link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f18ebfae9b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KidegaApp.Mvc</a>
+                <a class="navbar-brand mx-5 font-weight-bold darkorange" asp-area="" asp-controller="Home" asp-action="Index">
+                    
+                    <i class="fa fa-book fa-xl me-2 darkorange"></i>
+                    
+                    Kidega</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-around">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">Çıkış Yap</a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Giriş Yap</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SignUp">Sign Up</a>
+                            <li class="nav-item mx-1">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SignUp">Kaydol</a>
                             </li>
                         }
+                        @await Component.InvokeAsync("BasketLink")
                     </ul>
+                </div>
+                <div class="mx-5 w-25">
+                    <form asp-action="Index" asp-controller="Home" method="get">
+                        <div class="input-group align-items-md-center">
+                            <div class="form-outline w-75">
+                                <input type="search" name="searchTerm" class="form-control" placeholder="Kitap veya yazar arayın" />
+                            </div>
+                            <button type="submit" class="btn btn-darkorange">
+                                <i class="fas fa-search text-white"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -65,6 +84,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/alertifyjs/alertify.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
