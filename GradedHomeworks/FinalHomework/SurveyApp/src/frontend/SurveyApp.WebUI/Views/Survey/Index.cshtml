@@ -1,0 +1,98 @@
+﻿@using SurveyApp.WebUI.Models.Requests;
+@using SurveyApp.WebUI.Models.Responses;
+@model SurveyApp.WebUI.Models.Responses.BaseResponseModel<SurveyViewModel>
+
+@{
+    ViewData["Title"] = "Survey";
+}
+@if (!Model.Succeeded)
+{
+    <div class="alert-danger p-3">
+        <h5>⚠️ Survey not found!</h5>
+    </div>
+}
+else
+{
+    <div>
+
+        <h3>@Model.Data.Survey.Title</h3>
+        <hr />
+
+        <p>
+            <strong>Description:</strong>
+            @Model.Data.Survey.Description
+        </p>
+        <p> <strong>Survey Opened:</strong> @Model.Data.Survey.StartDate</p>
+        <p> <strong>Survey Closed:</strong> @(Model.Data.Survey.EndDate == null ? "-" : Model.Data.Survey.EndDate) </p>
+        <p> <strong>Owner:</strong> @Model.Data.Survey.SurveyOwnerFullName</p>
+        <hr />
+        <h5><strong>Questions</strong></h5>
+        @{
+            int questionCount = 1;
+        }
+        <form method="post" id="surveyResponseForm" asp-action="SendSurvey" asp-controller="Survey">
+            <input type="hidden" name="SurveyId" value="@Model.Data.Survey.Id">
+            @foreach (var question in Model.Data.Survey.Questions)
+            {
+                <div class="form-group mt-4">
+                    <input type="hidden" name="Answers[@(questionCount-1)].Id" id="Question-@question.Id" value="@question.Id">
+                    <p>@questionCount- @question.QuestionText</p>
+                    @switch ((QuestionType)question.QuestionTypeId)
+                    {
+                        case QuestionType.MultipleChoice:
+                            int i = 0;
+                            foreach (var option in question.QuestionOptions)
+                            {
+                                <input class="form-check-input" type="checkbox" name="Answers[@(questionCount-1)].AnswerOptions[@i].Id" value="@option.Id">
+                                <label class="form-check-label" for="Answers[@(questionCount-1)].AnswerOptions[@i].Id">@option.Option</label>
+                                <br />
+                                i++;
+                            }
+                            break;
+                        case QuestionType.SingleChoice:
+                            int j = 0;
+                            foreach (var option in question.QuestionOptions)
+                            {
+                                <input class="form-check-input" type="radio" name="Answers[@(questionCount-1)].AnswerOptions[0].Id" value="@option.Id">
+                                <label class="form-check-label" for="Answers[@(questionCount-1)].AnswerOptions[0].Id">@option.Option</label>
+
+                                <br>
+                                j++;
+                            }
+                            break;
+                        case QuestionType.TextInput:
+                            <input class="form-control" type="text" name="Answers[@(questionCount-1)].Text" />
+                            break;
+                        case QuestionType.TextArea:
+                            <textarea class="form-control" type="text" name="Answers[@(questionCount-1)].Text" rows="3"></textarea>
+                            break;
+                        case QuestionType.Rating:
+                            <input class="form-range" type="range" min="0" max="10" name="Answers[@(questionCount-1)].Rate" onchange="updateTextInput(this.value);" />
+                            <span id="ratingValue">5</span>
+                            break;
+                        default:
+                            break;
+
+                    }
+                </div>
+                questionCount++;
+            }
+            <div class="form-group mt-2">
+                <input type="submit"  id="surveySubmitBtn2" value="Send" class="btn btn-darkorange text-white" />
+                <input type="button" id="surveySubmitBtn" value="Send" class="btn btn-darkorange text-white" />
+            </div>
+        </form>
+    </div>
+}
+
+
+@section Scripts {
+    <script>
+        function updateTextInput(val) {
+            document.getElementById('ratingValue').innerText = val;
+        }
+       
+
+
+    </script>
+}

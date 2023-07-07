@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="7.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domains\SurveyApp.Entities\SurveyApp.Entities.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\SurveyApp.Infrastructure.Repositories\SurveyApp.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\SurveyApp.DataTransferObjects\SurveyApp.DataTransferObjects.csproj" />
+  </ItemGroup>
+
+</Project>
