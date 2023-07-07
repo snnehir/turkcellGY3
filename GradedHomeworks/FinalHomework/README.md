@@ -1,44 +1,44 @@
-## Anket Uygulaması
+## Anket UygulamasÄ±
 
-### Uygulama Hakkında
+### Uygulama HakkÄ±nda
 
-ASP.NET Core Web API ve ASP.NET Core MVC kullanılarak kayıtlı kullanıcıların anket oluşturabileceği, anketlerini başkalarıyla paylaşabileceği ve anket sonuçlarını görüntüleyebileceği bir uygulamadır.
+ASP.NET Core Web API ve ASP.NET Core MVC kullanÄ±larak kayÄ±tlÄ± kullanÄ±cÄ±larÄ±n anket oluÅŸturabileceÄŸi, anketlerini baÅŸkalarÄ±yla paylaÅŸabileceÄŸi ve anket sonuÃ§larÄ±nÄ± gÃ¶rÃ¼ntÃ¼leyebileceÄŸi bir uygulamadÄ±r.
 
-### Veri tabanı diyagramı
+### Veri tabanÄ± diyagramÄ±
 
-![diagram](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/FinalHomework/images/db-diagram.png) 
+![diagram](https://github.com/snnehir/turkcellGY3/blob/main/GradedHomeworks/FinalHomework/images/db_diagram.png) 
 
-Projede kullanılan veri tabanı diagramına [drawSql](https://drawsql.app/teams/me-438/diagrams/survey-app) üzerinden de ulaşabilirsiniz.
+Projede kullanÄ±lan veri tabanÄ± diagramÄ±na [drawSql](https://drawsql.app/teams/me-438/diagrams/survey-app) Ã¼zerinden de ulaÅŸabilirsiniz.
 
 
 ### Authentication ve Authorization
 
-API tarafı yetkilendirme işlemleri için JWT authentication mekanizmasını kullandım.
+API tarafÄ± yetkilendirme iÅŸlemleri iÃ§in JWT authentication mekanizmasÄ±nÄ± kullandÄ±m.
 
-MVC (frontend) tarafında ise Role-Based Cookie Authentication kullandım.
+MVC (frontend) tarafÄ±nda ise Role-Based Cookie Authentication kullandÄ±m.
 
-İstemciden sunucu tarafına yetkilendirme gereken bir istek gerçekleştirilecekse isteğe "Authorization header" eklenmelidir. Bunun için istemci tarafında `AuthHeaderHandler` isimli bir DelegateHandler tanımladım. Ayrıca bu handler sayesinde API tarafından "unauthorize" hatası alındığında token yenileme işlemi de gerçekleştirilir. Detaylı bilgi için Refit'in resmi dökümantasyonu inceleyebilirsiniz: [setting-request-headers](https://github.com/reactiveui/refit#setting-request-headers)
+Ä°stemciden sunucu tarafÄ±na yetkilendirme gereken bir istek gerÃ§ekleÅŸtirilecekse isteÄŸe "Authorization header" eklenmelidir. Bunun iÃ§in istemci tarafÄ±nda `AuthHeaderHandler` isimli bir DelegateHandler tanÄ±mladÄ±m. AyrÄ±ca bu handler sayesinde API tarafÄ±ndan "unauthorize" hatasÄ± alÄ±ndÄ±ÄŸÄ±nda token yenileme iÅŸlemi de gerÃ§ekleÅŸtirilir. DetaylÄ± bilgi iÃ§in Refit'in resmi dÃ¶kÃ¼mantasyonu inceleyebilirsiniz: [setting-request-headers](https://github.com/reactiveui/refit#setting-request-headers)
 
 
 ### Caching
 
-Web API stateless bir yapıda olduğundan kullanıcılarla ilgili bilgi tutmaz. Bundan dolayı bir kullanıcı giriş yaptığı zaman oluşturulan "access token" ve "refresh token" bilgilerini tutmak için ölçeklenebilirlik açısından InMemoryCache'e göre daha avantajlı olduğundan Redis'ten yararlandım.
+Web API stateless bir yapÄ±da olduÄŸundan kullanÄ±cÄ±larla ilgili bilgi tutmaz. Bundan dolayÄ± bir kullanÄ±cÄ± giriÅŸ yaptÄ±ÄŸÄ± zaman oluÅŸturulan "access token" ve "refresh token" bilgilerini tutmak iÃ§in Ã¶lÃ§eklenebilirlik aÃ§Ä±sÄ±ndan InMemoryCache'e gÃ¶re daha avantajlÄ± olduÄŸundan Redis'ten yararlandÄ±m.
 
-Docker üzerinden lokal Redis'e bağlanmak için bu komutu çalıştırabilirsiniz:
+Docker Ã¼zerinden lokal Redis'e baÄŸlanmak iÃ§in bu komutu Ã§alÄ±ÅŸtÄ±rabilirsiniz:
 
 ```
 docker run -d --name redis-server -p 6379:6379 redis/redis-stack-server:latest
 ```
 
-Redis'in projeye eklenmesi için Microsoft'un dökümantasyonunu inceleyebilirsiniz: [distributed-redis-cache](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-7.0#distributed-redis-cache)
+Redis'in projeye eklenmesi iÃ§in Microsoft'un dÃ¶kÃ¼mantasyonunu inceleyebilirsiniz: [distributed-redis-cache](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-7.0#distributed-redis-cache)
 
 
 ### API Consuming
 
-MVC kısmında yapılan API isteklerinin daha kolay bir şekilde yönetilmesini sağladığını düşündüğüm için Refit paketini kullandım. Refit sayesinde API istekleri, tanımlanan interface metotları aracılığıyla kolayca gerçekleştirilebilir. Daha detaylı bilgi için: [Refit](https://github.com/reactiveui/refit)
+MVC kÄ±smÄ±nda yapÄ±lan API isteklerinin daha kolay bir ÅŸekilde yÃ¶netilmesini saÄŸladÄ±ÄŸÄ±nÄ± dÃ¼ÅŸÃ¼ndÃ¼ÄŸÃ¼m iÃ§in Refit paketini kullandÄ±m. Refit sayesinde API istekleri, tanÄ±mlanan interface metotlarÄ± aracÄ±lÄ±ÄŸÄ±yla kolayca gerÃ§ekleÅŸtirilebilir. Daha detaylÄ± bilgi iÃ§in: [Refit](https://github.com/reactiveui/refit)
 
 
 ### Mapping
 
-Mapping kütüphanesi olarak diğer alternatiflerden daha performanslı olduğu ve kullanma kolaylığından ötürü [Mapster](https://github.com/MapsterMapper/Mapster) kütüphanesini tercih ettim.
+Mapping kÃ¼tÃ¼phanesi olarak diÄŸer alternatiflerden daha performanslÄ± olduÄŸu ve kullanma kolaylÄ±ÄŸÄ±ndan Ã¶tÃ¼rÃ¼ [Mapster](https://github.com/MapsterMapper/Mapster) kÃ¼tÃ¼phanesini tercih ettim.
 
