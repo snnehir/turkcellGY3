@@ -19,19 +19,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{40AA04
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{A4987444-BDD9-4B4A-8FA4-6645FAA6C739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.DataTransferObjects", "src\backend\Application\SurveyApp.DataTransferObjects\SurveyApp.DataTransferObjects.csproj", "{C4E8996C-7844-4539-A4D7-E65A094A5C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.DataTransferObjects", "src\backend\Application\SurveyApp.DataTransferObjects\SurveyApp.DataTransferObjects.csproj", "{C4E8996C-7844-4539-A4D7-E65A094A5C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.Services", "src\backend\Application\SurveyApp.Services\SurveyApp.Services.csproj", "{290C5ABE-A4FB-4B45-9383-B65E7D06BB3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.Services", "src\backend\Application\SurveyApp.Services\SurveyApp.Services.csproj", "{290C5ABE-A4FB-4B45-9383-B65E7D06BB3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.Entities", "src\backend\Domains\SurveyApp.Entities\SurveyApp.Entities.csproj", "{9FD1DD73-E7D7-4114-BE9B-BE1C5AC8B59D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.Entities", "src\backend\Domains\SurveyApp.Entities\SurveyApp.Entities.csproj", "{9FD1DD73-E7D7-4114-BE9B-BE1C5AC8B59D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.Infrastructure.Data", "src\backend\Infrastructure\SurveyApp.Infrastructure.Data\SurveyApp.Infrastructure.Data.csproj", "{4D0DB8F7-D21E-4604-B4A8-D7D265E3AFAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.Infrastructure.Data", "src\backend\Infrastructure\SurveyApp.Infrastructure.Data\SurveyApp.Infrastructure.Data.csproj", "{4D0DB8F7-D21E-4604-B4A8-D7D265E3AFAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.Infrastructure.Repositories", "src\backend\Infrastructure\SurveyApp.Infrastructure.Repositories\SurveyApp.Infrastructure.Repositories.csproj", "{8C6E78E3-54E2-4210-B877-7E1697012FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.Infrastructure.Repositories", "src\backend\Infrastructure\SurveyApp.Infrastructure.Repositories\SurveyApp.Infrastructure.Repositories.csproj", "{8C6E78E3-54E2-4210-B877-7E1697012FB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.WebAPI", "src\backend\WebAPI\SurveyApp.WebAPI\SurveyApp.WebAPI.csproj", "{E424B83B-B87B-4A77-9453-8047D3E4D50C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.WebAPI", "src\backend\WebAPI\SurveyApp.WebAPI\SurveyApp.WebAPI.csproj", "{E424B83B-B87B-4A77-9453-8047D3E4D50C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.WebUI", "src\frontend\SurveyApp.WebUI\SurveyApp.WebUI.csproj", "{24039E3E-1DC8-448F-AD10-09055E833A2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApp.WebUI", "src\frontend\SurveyApp.WebUI\SurveyApp.WebUI.csproj", "{24039E3E-1DC8-448F-AD10-09055E833A2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44E92745-8706-4347-B60F-F03F56ADB4DA}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

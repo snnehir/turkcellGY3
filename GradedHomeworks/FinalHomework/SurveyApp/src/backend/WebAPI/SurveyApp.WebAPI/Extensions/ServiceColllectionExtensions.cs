@@ -128,10 +128,6 @@ namespace SurveyApp.WebAPI.Extensions
         }
         public static void MapsterConfigurations(this IServiceCollection services)
         {
-            // Response count için bi ayar yap!
-            // Survey ekleyen kişinin token'ını kontrol et. Owner Id uyuşsun! (ya da id almadan direkt token'ına göre üretilebilir.)
-            // Answer işini de yap sonra mvc'ye geç oyalanma.
-            // Anket sonuçları rapor sayfası sonra yap.
             TypeAdapterConfig<QuestionDto, Question>
                 .NewConfig().Map(dest => dest.QuestionOptions, src => src.QuestionOptions);
             TypeAdapterConfig<CreateSurveyRequest, Survey>
